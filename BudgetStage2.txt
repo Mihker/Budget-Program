@@ -359,3 +359,346 @@ main()
 #       Else
 #         Display "proof of concept"
 #       End If    
+
+###############################################################################
+###############################################################################
+###############################################################################
+###############################################################################
+###############################################################################
+###############################################################################
+
+Edition 3
+
+
+_author_ = 'Mihker'
+
+## Budget Analysis: Week 5, slide 15 ##
+
+## UX ##
+
+## This program assists you in budgeting 
+## Please enter your monthly budget: 
+##
+## Now, please enter your monthly expenses for each category
+## housing:
+## utilities: 
+## insurance:1
+## food:
+## transportation:
+## child-care:
+## entertainment:
+## misc: 
+##
+## Do you have any other expenses for the month?
+## (type "y" for yes, or any other key to continue)
+##
+## Your monthly expenses were: 
+## You are "x" under/over budget   
+#
+## Pseudocode ## 
+
+# Module main()
+#   Declare Real budget  
+#   Declare Real housing
+#   Declare Real utilities
+#   Declare Real insurance
+#   Declare Real food  
+#   Declare Real transportation
+#   Declare Real child 
+#   Declare Real entertain 
+#   Declare Real misc 
+#   Declare Real expenses     
+#
+#   Set budget = intro()
+#   
+#   Display "Now, please enter your monthly expenses for each category"
+# 
+#   Set housing = housing_exp()
+#   Set utilities = utilities_exp()
+#   Set insurance = insurance_exp()
+#   Set food = food_exp()
+#   Set transportation = transportation_exp()
+#   Set child = child_exp()
+#   Set entertain = entertain_exp()
+#   Set misc = misc_exp()
+#
+#   Set expenses = output_total_expenses()
+#   calc_budget_v_expense()
+# End Module   
+
+# Function intro()
+#   Declare Real budget
+#
+#   Display "This program assists you in budgeting"
+#   Display "Please enter your monthly budget: $"
+#   Input budget
+#   Return budget
+# End Function  
+#
+# Function housing_exp()
+#   Declare Real housing  
+#   
+#   Display "housing: $" 
+#   Input housing  
+#   Return housing  
+# End Function    
+
+# Function utilities_exp()
+#   Declare Real utilities
+#
+#   Display "utilities: $"
+#   Input utilities 
+#   Return utilities 
+# End Function   
+#
+# Function insurance_exp() 
+#   Declare Real insurance   
+#
+#   Display "insurance: $"
+#   Return insurance  
+# End Function   
+
+# Function food_exp() 
+#   Declare Real food   
+#
+#   Display "food: $"
+#   Input food   
+#   Return food   
+# End Function   
+
+# Function transportation_exp()  
+#   Declare real transportation  
+#
+#   Display "transportation: $"
+#   Input transportation   
+#   Return transportation   
+# End Function  
+
+# Function child_exp() 
+#   Declare child   
+#
+#   Display "childcare: $" 
+#   Input child  
+#   Return child   
+# End Function   
+
+# Function entertain_exp()
+#   Declare Real entertain  
+#
+#   Display "entertainment: $"
+#   Input entertain   
+#   Return entertain  
+# End Function   
+
+# Function misc_exp()
+#   Declare Real misc 
+#
+#   Display "misc: $"
+#   Input misc  
+#   Return misc  
+# End Function
+
+# Function output_total_expenses(housing, utilities, insurance, food, transportation, child, entertain, misc)
+#   Declare Real expenses  
+#
+#   Set expenses = housing + utilities + insurance + food + transportation + child + entertain + misc  
+#   Display "your monthly expenses were $", expenses
+#   Return expenses   
+# End Function   
+
+# Module calc_budget_v_expense(budget, expenses) 
+#   If budget > expenses Then 
+#     Call positive_balance(budget, expenses)  
+#   Else 
+#     if budget < expenses Then
+#       Declare bad_bud = 0.0
+#       Declare bad_bud = expenses - budget   
+#       Call negative_balance(bad_bud)    
+#     Else
+#       Call zero_balance()    
+#   End If   
+# End Module   
+#
+# Module zero_balance()     
+   #Display "You broke even! I'll give you advice as soon as I think of what to write here."
+# End Module        
+
+def main():
+  budget = 0.0 
+
+  budget = intro()
+
+  print("")
+  print("Now, please enter your monthly expenses for each category")
+  print("")
+
+  housing = housing_exp()
+  utilities = utilities_exp()
+  insurance = insurance_exp()
+  food = food_exp()
+  transportation = transportation_exp()
+  child = child_exp()
+  entertain = entertain_exp()
+  misc = misc_exp()
+  expenses = output_total_expenses(housing, utilities, insurance, food, transportation, child, entertain, misc)
+  calc_budget_v_expense(budget, expenses, housing, utilities, insurance, food, transportation, child, entertain, misc)
+
+def intro():
+  budget = 0.0
+
+  print("This program assists you in budgeting")
+  print("")
+  budget = float(input("Please enter your montly budget: $"))
+  return budget  
+
+def housing_exp():
+  housing = 0.0
+
+  housing = float(input("housing: $"))
+  return housing   
+
+def utilities_exp():
+  utilities = 0.0
+
+  utilities = float(input("utilities: $"))
+  return utilities 
+
+def insurance_exp():
+  insurance = 0.0
+  
+  insurance = float(input("insurance: $"))
+  return insurance  
+
+def food_exp():
+  food = 0.0
+
+  food = float(input("food: $"))
+  return food  
+
+def transportation_exp():
+  transportation = 0.0
+
+  transportation = float(input("transportation: $"))
+  return transportation 
+
+def child_exp():
+  child = 0.0
+
+  child = float(input("childcare: $"))
+  return child   
+
+def entertain_exp():
+  entertain = 0.0
+
+  entertain = float(input("entertainment: $"))
+  return entertain  
+
+def misc_exp():
+  misc = 0.0
+
+  misc = float(input("misc: $"))
+  return misc  
+
+def output_total_expenses(housing, utilities, insurance, food, transportation, child, entertain, misc):
+  expenses = 0.0
+
+  expenses = housing + utilities + insurance + food + transportation + child + entertain + misc
+  print("Your monthly expenses were: $""{:,.2f}".format(expenses))
+  return expenses 
+
+def calc_budget_v_expense(budget, expenses, housing, utilities, insurance, food, transportation, child, entertain, misc):
+  if budget > expenses:
+    positive_balance(budget, expenses)  
+  elif expenses > budget:
+    negative_balance(budget, expenses, housing, utilities, insurance, food, transportation, child, entertain, misc)   
+  else:
+    zero_balance()   
+
+def positive_balance(budget, expenses):
+  print("your positive balance is: $""{:,.2f}".format(budget - expenses))
+  print("New module will be placed here!")
+
+def negative_balance(budget, expenses, housing, utilities, insurance, food, transportation, child, entertain, misc):
+  bad_bud = 0.0
+  new_bud = ""
+  bad_bud = expenses - budget
+
+  while bad_bud > 0:
+    print("You are over your budget for the month")
+    print("amount: $", "{:,.2f}".format(bad_bud))
+    print("")
+    print("Please type one of the following categories")
+    print("housing, utilities, insurance, food, transportation,")
+    print("childcare, entertainment, misc")
+
+    new_bud = input("ENTER HERE: ")
+    
+    if new_bud == "housing":
+        new_housing = 0.0
+
+        print("Your housing expenses were: $", "{:,.2f}".format(housing))
+        new_housing = float(input("Select an amount that's feasible to reduce: $"))
+        bad_bud = bad_bud - new_housing
+
+    elif new_bud == "utilities":
+        new_utilities = 0.0
+
+        print("Your utilities expenses were: $", "{:,.2f}".format(utilities))
+        new_utilities = float(input("Select an amount that's feasible to reduce: $"))
+        bad_bud = bad_bud - new_utilities
+
+    elif new_bud == "insurance":
+      new_insurance = 0.0
+
+      print("Your insurance expenses were: $", "{:,.2f}".format(insurance))
+      new_insurance = float(input("Select an amount that's feasible to reduce: $"))
+      bad_bud = bad_bud - new_insurance   
+
+    elif new_bud == "food":
+      new_food = 0.0
+
+      print("Your food expenses were: $", "{:,.2f}".format(food))
+      new_utilities = float(input("Select an amount that's feasible to reduce: $"))
+      bad_bud = bad_bud - new_food  
+
+    elif new_bud == "transportation":
+      new_transportation = 0.0
+
+      print("Your transportation expenses were: $", "{:,.2f}".format(transportation))
+      new_transportation = float(input("Select an amount that's feasible to reduce: $"))
+      bad_bud = bad_bud - new_transportation
+
+    elif new_bud == "childcare":
+      new_child = 0.0
+
+      print("Your childcare expenses were: $", "{:,.2f}".format(child))
+      new_child = float(input("Select an amount that's feasible to reduce: $"))
+      bad_bud = bad_bud - new_child 
+
+    elif new_bud == "entertainment":
+      new_entertain = 0.0
+
+      print("Your utilities expenses were: $", "{:,.2f}".format(entertain))
+      new_entertain = float(input("Select an amount that's feasible to reduce: $"))
+      bad_bud = bad_bud - new_entertain
+
+    elif new_bud == "misc":
+      new_misc = 0.0
+
+      print("Your miscellaneous expenses were: $", "{:,.2f}".format(misc))
+      new_misc = float(input("Select an amount that's feasible to reduce: $"))
+      bad_bud = bad_bud - new_misc   
+
+    else:
+      print("invalid category")
+
+  if bad_bud == 0:
+    print("you have a zero balance")
+  else:
+    print("Your balance is: $","{:,.2f}".format(bad_bud *-1))
+    print("new module goes here!")
+        
+def zero_balance():
+  print("You broke even! I'll give you advice as soon as I think of what to write here.")
+
+main() 
